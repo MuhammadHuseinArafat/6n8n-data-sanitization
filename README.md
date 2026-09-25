@@ -34,7 +34,7 @@ A streamlined n8n workflow utilizing a **Code Node** to perform rapid data extra
 {
   "daftar_peserta": "  andi, SITI  , , Budi ,  "
 }
-**Output:**
+**Raw Input:**
 [
   { "nama_peserta": "ANDI" },
   { "nama_peserta": "SITI" },
@@ -44,7 +44,7 @@ A streamlined n8n workflow utilizing a **Code Node** to perform rapid data extra
 <img width="890" height="823" alt="image" src="https://github.com/user-attachments/assets/5b6f4aef-725c-4927-90ed-417d73e4da51" />
 
 
-###🛡️ Error Handling & Edge Cases
+### Error Handling & Edge Cases
 
 Null Value Rejection: The script includes a logical check (nama.trim() !== "") to ensure that double commas or trailing commas in the legacy data do not create empty database rows.
 
