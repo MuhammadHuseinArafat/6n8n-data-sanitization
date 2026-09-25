@@ -1,0 +1,1 @@
+# 6n8n-data-sanitization
