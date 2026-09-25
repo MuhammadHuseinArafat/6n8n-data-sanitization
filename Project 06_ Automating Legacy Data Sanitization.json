@@ -1,0 +1,94 @@
+{
+  "name": "Project 06: Automating Legacy Data Sanitization",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "e6e472df-9bce-4f74-ac6a-6b664fd1456e",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c49799d0-7de9-48d9-94cd-3dbefa8e6a8e",
+              "name": "daftar_peserta",
+              "value": "andi, SITI  , , Budi ,",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "40cc4670-1c16-49f1-b930-01343891ae7c",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "let teksPeserta = $input.first().json.daftar_peserta;\n\nlet arrayPeserta = teksPeserta.split(',').filter(nama => nama.trim() !== \"\");\n\nlet hasilAkhir = [];\nfor (let nama of arrayPeserta) {\n  hasilAkhir.push({\n    json: {\n      nama_peserta: nama.trim() .toUpperCase()\n    }\n    \n  });\n  \n}\nreturn hasilAkhir;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        0
+      ],
+      "id": "7444038f-9269-4818-a657-f4308dd7f74f",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "f5a9fc23-72ed-439a-bdb3-536171a0e040",
+  "meta": {
+    "instanceId": "78020135ce1e18d23f1d2826518029bcddfec44dbf18b7fe235e495f881aa588"
+  },
+  "nodeGroups": [],
+  "id": "uTMkDUKbuxhigoBW",
+  "tags": []
+}
